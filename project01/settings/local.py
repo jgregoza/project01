@@ -35,4 +35,4 @@ STATICFILES_DIR= BASE_DIR / 'static'
 # Media config
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media'),
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
