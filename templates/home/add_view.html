@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Add Views</title>
+</head>
+
+<body>
+    <h1> Hello, This is from add_view.html</h1>
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+</body>
+
+</html>
