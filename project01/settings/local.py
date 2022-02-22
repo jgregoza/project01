@@ -25,11 +25,11 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIR= BASE_DIR / 'static'
+#STATICFILES_DIR= [BASE_DIR / 'static']
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / "../static"
-# ]
+STATICFILES_DIRS = [
+      BASE_DIR / "../static"
+]
 
 
 # Media config
