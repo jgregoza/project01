@@ -14,7 +14,9 @@ from django.views.generic import (
 
 # models
 from applications.departamento.models import Departamento
-from .models import Empleado, Habilidades
+from .models import Empleado
+# forms
+from .forms import EmpleadoForm
 
 
 # Create your views here.
@@ -26,7 +28,7 @@ class InicioView(TemplateView):
 class EmpleadoCreateView(CreateView):
     template_name = "persona/create_empleado.html"
     model = Empleado
-    fields = ["first_name", "last_name", "job", "departamento", "habilidades", "avatar",]
+    form_class = EmpleadoForm
     success_url = reverse_lazy("persona_app:empleado_admin")  # Se redirecciona a la url con nombre 'success'
 
     def form_valid(self, form):  # Metodo que valida el post para guardarlo en la bd
@@ -98,40 +100,52 @@ class EmpleadoDeleteView(DeleteView):
         self.object.delete()
         return HttpResponseRedirect(success_url)
 
-        
-"""class ListEmpleadosJob(ListView):
-    template_name = 'persona/lista_job.html'
-   
-
-    def get_queryset(self):
-        area = self.kwargs['job']
-        lista = Empleado.objects.filter(
-        job = area 
-    )
-        return lista"""
-
-
-class ListBuscarEmpleados(ListView):
-    template_name = "persona/buscar_empleados.html"
-    context_object_name = "empleados"
-
-
-class ListaHabilidades(ListView):
-    template_name = "persona/lista_skills.html"
-    paginate_by = 4
-    ordering = "habilidades"
-    context_object_name = "habilidad"
-
-    def get_queryset(self):
-        empleado = Empleado.objects.get(id=8)
-        return empleado.habilidades.all()
-
 
 class EmpleadoDetailView(DetailView):
     model = Empleado
     template_name = "persona/detalle_empleado.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(EmpleadoDetailView, self).get_context_data(**kwargs)
+        context['titulo'] = 'Empleado del Mes'
+        return context
 
-class SuccessView(TemplateView):
-    template_name = "persona/success_view.html"
+        
+# """class ListEmpleadosJob(ListView):
+#     template_name = 'persona/lista_job.html'
+   
+
+#     def get_queryset(self):
+#         area = self.kwargs['job']
+#         lista = Empleado.objects.filter(
+#         job = area 
+#     )
+#         return lista"""
+
+
+# class ListBuscarEmpleados(ListView):
+#     template_name = "persona/buscar_empleados.html"
+#     context_object_name = "empleados"
+
+#     def get_queryset(self):
+#         palabra_clave = self.request.GET.get("kword", '')
+#         lista = Empleado.objects.filter(
+#             first_name=palabra_clave
+#         )
+#         return lista
+
+
+# class ListaHabilidades(ListView):
+#     template_name = "persona/lista_skills.html"
+#     paginate_by = 4
+#     ordering = "habilidades"
+#     context_object_name = "habilidad"
+
+#     def get_queryset(self):
+#         empleado = Empleado.objects.get(id=2)
+#         return empleado.habilidades.all()
+
+    
+# class SuccessView(TemplateView):
+#     template_name = "persona/success_view.html"
 

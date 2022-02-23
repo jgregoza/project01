@@ -12,7 +12,7 @@ Crear Empleado
     <div class="grid-x">
         <h1 class="cell">Registrar Empleado</h1>
         <div class="cell">
-            <form class="grid-x grid-margin-x" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <form class="grid-x grid-margin-x" method="POST" enctype="multipart/form-data">{% csrf_token %} <!-- Sirve para servir archivos media: enctype="multipart/form-data"-->
                 <div class="cell large-6">
                     <label>Nombres:
                         {{ form.first_name }}

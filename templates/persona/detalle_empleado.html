@@ -1,8 +1,46 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
 
-<head>
-    <title>My DealView</title>
-</head>
+{% block title %}
+{{ object.first_name }}
+{% endblock title %}
+
+
+{% block content %}
+{% include "includes/header.html" %}
+
+<div class="grid-container">
+    <div class="grid-x grid-margin-x align-center">
+        <div class="cell large-4 card" style="width: 300px; margin-top: 10px;">
+            <div class="card-divider">
+                {{ object.get_job_display }}
+            </div>
+            {% if object.avatar %}
+                <img src="{{ empleado.avatar.url }}">
+            {% else %}
+                <img src="{% static 'img/20.jpg' %}">
+            {% endif %}  
+            <div class="card-section">
+                <h4>{{ object.full_name}}</h4>
+                <p>{{  object.last_name }}</p>
+                <p>{{  object.departamento.name }}</p>
+                <p><span class="label">habilidades:</span></p>
+                <ul class="vertical-menu">
+                    
+                    {% for h in object.habilidades.all  %}
+                        <li>
+                           <p>{{ h.habilidad }}</p>
+                        </li>
+                    {% endfor %}
+                        
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
 
 <body>
 

@@ -29,7 +29,7 @@ class Empleado(models.Model):
     full_name = models.CharField("Nombres completos", max_length=120, blank=True)
     job = models.CharField("Trabajo", max_length=1, choices=JOB_CHOISES)
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='empleado', blank=True, null=True)
+    avatar = models.ImageField(upload_to="empleado/%Y-%m-%d", blank=True, null=True)
     habilidades = models.ManyToManyField(Habilidades)
     resume = RichTextField()
 
