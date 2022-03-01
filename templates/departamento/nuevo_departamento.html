@@ -13,24 +13,24 @@ Registrar departamentos
     <div class="grid-x">
         <h1 class="cell">Registrar Departamento</h1>
         <form class="cell callout grid-x grid-margin-x" method="POST">{% csrf_token %}
-            <!-- <div class="medium-6 cell">
-                <label>Nombres:
+            <div class="medium-6 cell">
+                <label>Nombre:
                     {{ form.nombre }}
                 </label>
             </div>
             <div class="medium-6 cell">
-                <label>Apellidos:
+                <label>Apellido:
                     {{ form.apellidos }}
                 </label>
-            </div> -->
+            </div>
             <div class="medium-6 cell">
                 <label>Departamento:
-                    {{ form.nombre }}
+                    {{ form.departamento }}
                 </label>
             </div>
             <div class="medium-6 cell">
                 <label>Alias:
-                    {{ form.nombre }}
+                    {{ form.shortname }}
                 </label>
             </div>
             <div class="medium-12 cell">

@@ -1,6 +1,7 @@
+from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import FormView
-from django.urls import reverse_lazy
 
 from applications.persona.models import Empleado
 from .models import Departamento
@@ -18,22 +19,21 @@ class DepartamentoListView(ListView):
 class NewDepartmentoView(FormView):
     template_name = 'departamento/nuevo_departamento.html'
     form_class = NewDepartmentForm
-    success_url = '/'
+    success_url = reverse_lazy("departamento_app:lista_departamento")
 
     def form_valid(self, form):
-
         depa = Departamento(
-            name = form.cleaned_data['name'],
-            short_name = form.cleaned_data['short_name']
+            name = form.cleaned_data['departamento'],
+            short_name = form.cleaned_data['shortname']
         )
         depa.save()
 
-        # nombre = form.cleaned_data['nombre']    #recuperando los datos desde el form
-        # apellido = form.cleaned_data['apellidos']
-        # Empleado.objects.create(
-        #     first_name=nombre,
-        #     last_name=apellido,
-        #     job='1',
-        #     departamento=depa,
-        # )
+        nombre = form.cleaned_data['nombre']    #recuperando los datos desde el form
+        apellidos = form.cleaned_data['apellidos']
+        Empleado.objects.create(
+            first_name=nombre,
+            last_name=apellidos,
+            job='1',
+            departamento=depa,
+        )
         return super(NewDepartmentoView, self).form_valid(form)
